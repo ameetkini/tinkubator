@@ -7,7 +7,6 @@ import com.tinkerpop.blueprints.pgm.IndexableGraph;
 import com.tinkerpop.blueprints.pgm.TransactionalGraph;
 import com.tinkerpop.blueprints.pgm.Vertex;
 import com.tinkerpop.blueprints.pgm.TransactionalGraph.Conclusion;
-import com.tinkerpop.blueprints.pgm.TransactionalGraph.Mode;
 
 /**
  * @author Alex Averbuch (alex.averbuch@gmail.com)
@@ -72,9 +71,7 @@ public class OperationIndexPutAllElements extends Operation {
 		int elementCount = 0;
 
 		TransactionalGraph transactionalGraph = (TransactionalGraph) getGraph();
-		Mode transactionMode = transactionalGraph.getTransactionMode();
 
-		transactionalGraph.setTransactionMode(Mode.MANUAL);
 		transactionalGraph.startTransaction();
 
 		for (Vertex v : getGraph().getVertices()) {
@@ -98,7 +95,6 @@ public class OperationIndexPutAllElements extends Operation {
 		}
 
 		transactionalGraph.stopTransaction(Conclusion.SUCCESS);
-		transactionalGraph.setTransactionMode(transactionMode);
 
 		return elementCount;
 	}

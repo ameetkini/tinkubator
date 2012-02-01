@@ -3,16 +3,14 @@ package com.tinkerpop.bench;
 import java.lang.reflect.Constructor;
 
 import com.tinkerpop.blueprints.pgm.Graph;
-import com.tinkerpop.blueprints.pgm.TransactionalGraph;
-import com.tinkerpop.blueprints.pgm.TransactionalGraph.Mode;
 
 public class GraphDescriptor {
 
-	private Class<?> graphType = null;
-	private String graphDir = null;
-	private String graphPath = null;
-	private Graph graph = null;
-
+	protected Class<?> graphType = null;
+	protected Graph graph = null;
+	protected String graphDir = null;
+	protected String graphPath = null;	
+	
 	public GraphDescriptor(Class<?> graphType) {
 		this(graphType, null, null);
 	}
@@ -60,9 +58,6 @@ public class GraphDescriptor {
 			throw e;
 		}
 
-		if (TransactionalGraph.class.isAssignableFrom(graphType))
-			((TransactionalGraph) graph).setTransactionMode(Mode.AUTOMATIC);
-
 		return graph;
 	}
 
@@ -79,9 +74,8 @@ public class GraphDescriptor {
 			deleteDir(graphDir);
 		}
 	}
-
+	
 	private void deleteDir(String pathStr) {
 		LogUtils.deleteDir(pathStr);
 	}
-
 }

@@ -29,9 +29,9 @@
 	<dependencies>
 		<!-- TINKERPOP GENERAL -->
 		<dependency>
-			<groupId>com.tinkerpop</groupId>
-			<artifactId>blueprints</artifactId>
-			<version>0.5-SNAPSHOT</version>
+			<groupId>com.tinkerpop.blueprints</groupId>
+			<artifactId>blueprints-core</artifactId>
+			<version>1.1</version>
 		</dependency> 
 		<dependency>
 			<groupId>com.tinkerpop</groupId>
@@ -42,22 +42,6 @@
 			<groupId>com.tinkerpop</groupId>
 			<artifactId>gremlin</artifactId>
 			<version>0.8-SNAPSHOT</version>
-		</dependency>
-
-		<!-- TINKERPOP - NEO4J SUPPORT -->
-		<dependency>
-			<groupId>com.tinkerpop</groupId>
-			<artifactId>graphdb-deps-neo4j</artifactId>
-			<version>0.5-SNAPSHOT</version>
-			<type>pom</type>
-		</dependency>
-
-		<!-- TINKERPOP - ORIENTDB SUPPORT -->
-		<dependency>
-			<groupId>com.tinkerpop</groupId>
-			<artifactId>graphdb-deps-orientdb</artifactId>
-			<version>0.5-SNAPSHOT</version>
-			<type>pom</type>
 		</dependency>
 
 		<!-- TESTING -->

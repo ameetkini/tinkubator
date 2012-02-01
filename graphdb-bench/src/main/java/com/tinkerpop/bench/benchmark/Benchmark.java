@@ -7,25 +7,23 @@ import com.tinkerpop.bench.BenchRunner;
 import com.tinkerpop.bench.GraphDescriptor;
 import com.tinkerpop.bench.operationFactory.OperationFactoryLog;
 import com.tinkerpop.bench.operationFactory.OperationFactory;
-import com.tinkerpop.blueprints.pgm.impls.tg.TinkerGraph;
 
 /**
  * @author Alex Averbuch (alex.averbuch@gmail.com)
  */
+
 public abstract class Benchmark {
 
-	private String log = null;
+	private String opLog = null;
 
-	public Benchmark(String log) {
-		this.log = log;
+	public Benchmark(String opLog) {
+		this.opLog = opLog;
 	}
 
-	private void createOperationLogs() throws Exception {
-		GraphDescriptor graphDescriptor = new GraphDescriptor(TinkerGraph.class);
-
+	private void createOperationLogs(GraphDescriptor graphDescriptor) throws Exception {
 		try {
 			BenchRunner benchRunner = new BenchRunner(graphDescriptor,
-					new File(log), getOperationFactories());
+					new File(opLog), getOperationFactories());
 
 			benchRunner.startBench();
 		} catch (Exception e) {
@@ -34,19 +32,19 @@ public abstract class Benchmark {
 	}
 
 	protected abstract ArrayList<OperationFactory> getOperationFactories();
-
+	
 	public final void loadOperationLogs(GraphDescriptor graphDescriptor,
-			String logOut) throws Exception {
-		if (new File(log).exists() == false)
-			createOperationLogs();
+			String resultLog) throws Exception {
+		if (new File(opLog).exists() == false)
+			createOperationLogs(graphDescriptor);
 
 		OperationFactory operationFactory = new OperationFactoryLog(new File(
-				log));
+				opLog));
 
 		BenchRunner benchRunner = new BenchRunner(graphDescriptor, new File(
-				logOut), operationFactory);
+				resultLog), operationFactory);
 
 		benchRunner.startBench();
 	}
-
+	
 }
